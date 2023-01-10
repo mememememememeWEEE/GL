@@ -1,3 +1,5 @@
+#define GL_SILENCE_DEPRECATION
+
 #include "lib/glfw/glfw3.h"
 
 int main(void) {
