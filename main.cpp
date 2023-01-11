@@ -48,6 +48,10 @@ void error_callback([[maybe_unused]] int error, const char* description) {
 	fprintf(stderr, "%s", description);
 }
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+}
+
 int main(void) {
 	
 	GLFWwindow* window;
@@ -75,6 +79,7 @@ int main(void) {
 	}
 
 	glfwMakeContextCurrent(window);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	if (glewInit() != GLEW_OK) {
 #ifdef DEBUG
@@ -86,6 +91,8 @@ int main(void) {
 #ifdef DEBUG
 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
 #endif
+
+	glViewport(0, 0, 600, 400);
 
 	float positions[6] = {
 		-0.5f, -0.5f,
