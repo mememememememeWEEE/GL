@@ -1,13 +1,14 @@
 #define GL_SILENCE_DEPRECATION
 #define GLEW_STATIC
+#define DEBUG //for now
 
 #include <cstdio>
 #include <cstdlib>
 #include "lib/glew/glew.h"
 #include "lib/glfw/glfw3.h"
 
-static unsigned int CompileShader(unsigned int type, const char* source) {
-	unsigned int id = glCreateShader(type);
+static GLuint CompileShader(GLuint type, const char* source) {
+	GLuint id = glCreateShader(type);
 	glShaderSource(id, 1, &source, nullptr);
 	glCompileShader(id);
 
@@ -29,9 +30,9 @@ static unsigned int CompileShader(unsigned int type, const char* source) {
 }
 
 static int CreateShader(const char* vertexShader, const char* fragmentShader) {
-	unsigned int program = glCreateProgram();
-	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-	unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+	GLuint program = glCreateProgram();
+	GLuint vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+	GLuint fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
 	glAttachShader(program, vs);
 	glAttachShader(program, fs);
@@ -100,7 +101,7 @@ int main(void) {
 		0.5f, -0.5f
 	};
 
-	unsigned int buffer;
+	GLuint buffer;
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
 	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW); 
@@ -122,7 +123,7 @@ int main(void) {
 		"color = vec4(1.0, 0.0, 0.0, 1.0);\n"
 		"}\n";
 
-	unsigned int shader = CreateShader(vertexShader, fragmentShader);
+	GLuint shader = CreateShader(vertexShader, fragmentShader);
 	glUseProgram(shader);
 
 	while (!glfwWindowShouldClose(window)) {
