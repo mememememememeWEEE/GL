@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include "lib/glew/glew.h"
 #include "lib/glfw/glfw3.h"
-#include "app.hpp"
+#include "src/window.hpp"
 
 static GLuint CompileShader(GLuint type, const char* source) {
 	GLuint id = glCreateShader(type);
