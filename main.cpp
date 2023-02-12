@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include "lib/glew/glew.h"
 #include "lib/glfw/glfw3.h"
+#include "app.hpp"
 
 static GLuint CompileShader(GLuint type, const char* source) {
 	GLuint id = glCreateShader(type);
@@ -55,45 +56,47 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 int main(void) {
 	
-	GLFWwindow* window;
-	if (!glfwInit()) {
-#ifdef DEBUG
-		printf("GLFW initialization failed\n");
-#endif
-		return -1;
-	}
+// 	GLFWwindow* window;
+// 	if (!glfwInit()) {
+// #ifdef DEBUG
+// 		printf("GLFW initialization failed\n");
+// #endif
+// 		return -1;
+// 	}
 
-	glfwSetErrorCallback(error_callback);
+// 	glfwSetErrorCallback(error_callback);
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+// 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+// 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+// 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+// 	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(600, 400, "Hello", NULL, NULL);
-	if (!window) {
-#ifdef DEBUG
-		printf("Window creation failed\n");
-#endif
-		glfwTerminate();
-		return -1;
-	}
+// 	window = glfwCreateWindow(600, 400, "Hello", NULL, NULL);
+// 	if (!window) {
+// #ifdef DEBUG
+// 		printf("Window creation failed\n");
+// #endif
+// 		glfwTerminate();
+// 		return -1;
+// 	}
 
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+// 	glfwMakeContextCurrent(window);
+// 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-	if (glewInit() != GLEW_OK) {
-#ifdef DEBUG
-		printf("GLEW initialization failed\n");
-#endif
-		return -1;
-	}
+// 	if (glewInit() != GLEW_OK) {
+// #ifdef DEBUG
+// 		printf("GLEW initialization failed\n");
+// #endif
+// 		return -1;
+// 	}
 
-#ifdef DEBUG
-	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
-#endif
+// #ifdef DEBUG
+// 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+// #endif
 
-	glViewport(0, 0, 600, 400);
+	// glViewport(0, 0, 600, 400);
+	Window::SetupWindow(600, 400, "Hello World");
+	Window::InitWindow();
 
 	float positions[6] = {
 		-0.5f, -0.5f,
@@ -126,20 +129,19 @@ int main(void) {
 	GLuint shader = CreateShader(vertexShader, fragmentShader);
 	glUseProgram(shader);
 
-	while (!glfwWindowShouldClose(window)) {
+	while (!glfwWindowShouldClose(Window::window)) {
 		//render here:
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		//exchange front and back buffers
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(Window::window);
 
 		//Poll for and process events
 		glfwPollEvents();
 	}
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
+	Window::DestroyWindow();
 	return 0;
 }
