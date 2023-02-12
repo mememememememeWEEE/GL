@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include "lib/glew/glew.h"
 #include "lib/glfw/glfw3.h"
+#include "lib/glm/glm.hpp"
 #include "src/window.hpp"
 #include "src/rendering.hpp"
 
@@ -58,6 +59,8 @@ int main(void) {
 	KXRM::Window::SetupWindow(600, 400, "Hello World");
 	KXRM::Window::InitWindow({3, 0});
 	KXRM::Rendering::Initialize();
+
+	glm::vec3 v;
 
 	float positions[6] = {
 		-0.5f, -0.5f,
