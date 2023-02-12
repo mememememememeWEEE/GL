@@ -6,6 +6,7 @@
 #include "lib/glew/glew.h"
 #include "lib/glfw/glfw3.h"
 #include "src/window.hpp"
+#include "src/rendering.hpp"
 
 static GLuint CompileShader(GLuint type, const char* source) {
 	GLuint id = glCreateShader(type);
@@ -56,6 +57,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 int main(void) {
 	KXRM::Window::SetupWindow(600, 400, "Hello World");
 	KXRM::Window::InitWindow({3, 0});
+	KXRM::Rendering::Initialize();
 
 	float positions[6] = {
 		-0.5f, -0.5f,

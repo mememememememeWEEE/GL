@@ -46,11 +46,6 @@ namespace KXRM::Window {
         glfwMakeContextCurrent(window);
         glViewport(0, 0, WindowWidth, WindowHeight);
 
-        if (glewInit() != GLEW_OK) {
-            fprintf(stderr, "GLFW initialization failed\n");
-            exit(EXIT_FAILURE);
-        }
-
 	    printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
     }
 
