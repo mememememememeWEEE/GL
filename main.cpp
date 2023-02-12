@@ -4,6 +4,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 #include "lib/glew/glew.h"
 #include "lib/glfw/glfw3.h"
 #include "src/window.hpp"
@@ -57,6 +58,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 int main(void) {
 	Window::SetupWindow(600, 400, "Hello World");
 	Window::InitWindow();
+
+	cout << Window::WindowHeight;
 
 	float positions[6] = {
 		-0.5f, -0.5f,
