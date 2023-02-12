@@ -1,6 +1,5 @@
 #define GL_SILENCE_DEPRECATION
 #define GLEW_STATIC
-#define DEBUG //for now
 
 #include <cstdio>
 #include <cstdlib>
@@ -55,8 +54,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 }
 
 int main(void) {
-	Window::SetupWindow(600, 400, "Hello World");
-	Window::InitWindow();
+	KXRM::Window::SetupWindow(600, 400, "Hello World");
+	KXRM::Window::InitWindow({3, 0});
 
 	float positions[6] = {
 		-0.5f, -0.5f,
@@ -89,19 +88,19 @@ int main(void) {
 	GLuint shader = CreateShader(vertexShader, fragmentShader);
 	glUseProgram(shader);
 
-	while (!glfwWindowShouldClose(Window::window)) {
+	while (KXRM::Window::IsOpen()) {
 		//render here:
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		//exchange front and back buffers
-		glfwSwapBuffers(Window::window);
+		glfwSwapBuffers(KXRM::Window::window);
 
 		//Poll for and process events
 		glfwPollEvents();
 	}
 
-	Window::DestroyWindow();
+	KXRM::Window::DestroyWindow();
 	return 0;
 }

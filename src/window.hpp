@@ -3,9 +3,17 @@
 
 #include "../lib/glfw/glfw3.h"
 #include "../lib/glew/glew.h"
+#include "KXRM.hpp"
+
 
 //I'm too lazy to make a singleton class here
-namespace Window {
+namespace KXRM::Window {
+    struct RenderConfig final {
+        int OpenGL_VERSION_MAJOR = 3;
+        int OpenGL_VERSION_MINOR = 0;
+        int Window_RESIZEABLE = GL_TRUE;
+    };
+
     GLFWwindow* window;
     size_t WindowWidth = 600;
     size_t WindowHeight = 400;
@@ -17,14 +25,15 @@ namespace Window {
         WindowTitle = title;
     }
 
-    void InitWindow() {
+    void InitWindow(RenderConfig settings) {
         if (!glfwInit()) {
 		    fprintf(stderr, "GLFW initialization failed\n");
 		    exit(EXIT_FAILURE);
         }
 
-	    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+	    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, settings.OpenGL_VERSION_MAJOR);
+    	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, settings.OpenGL_VERSION_MINOR);
+        glfwWindowHint(GLFW_RESIZABLE, settings.Window_RESIZEABLE);
 
 	    window = glfwCreateWindow(WindowWidth, WindowHeight, WindowTitle, NULL, NULL);
 
@@ -48,5 +57,9 @@ namespace Window {
     void DestroyWindow() {
         glfwDestroyWindow(window);
         glfwTerminate();
+    }
+
+    bool IsOpen() {
+        return (!glfwWindowShouldClose(window));
     }
 }
