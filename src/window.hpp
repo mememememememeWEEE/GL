@@ -7,11 +7,14 @@
 //I'm too lazy to make a singleton class here
 namespace Window {
     GLFWwindow* window;
-    size_t WindowWidth = 600, WindowHeight = 400;
+    size_t WindowWidth = 600;
+    size_t WindowHeight = 400;
     const char* WindowTitle = "Window";
 
     void SetupWindow(int width, int height, const char* title) {
-        WindowWidth = width; WindowHeight = height; WindowTitle = title;
+        WindowWidth = width; 
+        WindowHeight = height;
+        WindowTitle = title;
     }
 
     void InitWindow() {
