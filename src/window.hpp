@@ -46,7 +46,7 @@ namespace KXRM::Window {
         glfwMakeContextCurrent(window);
         glViewport(0, 0, WindowWidth, WindowHeight);
 
-	    printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+	    LOG("OpenGL Version: %s\n", glGetString(GL_VERSION));
     }
 
     void DestroyWindow() {
