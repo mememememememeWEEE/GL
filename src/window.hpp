@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdlib>
 
 #include "../lib/glfw/glfw3.h"
