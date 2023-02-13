@@ -4,6 +4,8 @@
 #ifdef __APPLE__
 #define KXRM_PLATFORM_APPLE
 #else
+
+//#ifdef _WIN32
 #define KXRM_PLATFORM_WINDOWS
 #endif
 
