@@ -8,7 +8,7 @@
 
 //I'm too lazy to make a singleton class here
 namespace KXRM::Window {
-    struct RenderConfig final {
+    struct WindowConfig final {
         int OpenGL_VERSION_MAJOR = 3;
         int OpenGL_VERSION_MINOR = 0;
         int Window_RESIZEABLE = GL_TRUE;
@@ -25,7 +25,7 @@ namespace KXRM::Window {
         WindowTitle = title;
     }
 
-    void InitWindow(RenderConfig settings) {
+    void InitWindow(WindowConfig settings) {
         if (!glfwInit()) {
 		    fprintf(stderr, "GLFW initialization failed\n");
 		    exit(EXIT_FAILURE);

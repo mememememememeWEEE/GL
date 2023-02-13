@@ -12,4 +12,15 @@ namespace KXRM::Rendering {
             exit(EXIT_FAILURE);
         }
     }
+
+    class Texture final {
+    public:
+        unsigned int RendererID;
+        const char * FilePath;
+        unsigned char * LocalBuffer;
+        int Width, Height;
+        
+        inline int GetWidth() const { return Width; }
+        inline int GetHeight() const { return Height; }
+    }
 }
