@@ -1,4 +1,11 @@
-#pragma once
+#ifndef KXRM
+#define KXRM
+
+#ifdef __APPLE__
+#define KXRM_PLATFORM_APPLE
+#else
+#define KXRM_PLATFORM_WINDOWS
+#endif
 
 #define STB_IMAGE_IMPLEMENTATION
 
@@ -8,6 +15,6 @@
 #define LOG(...) 
 #endif
 
-
-
 namespace KXRP {};
+
+#endif
