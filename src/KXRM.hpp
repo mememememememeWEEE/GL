@@ -1,13 +1,4 @@
-#ifndef KXRM
-#define KXRM
-
-#ifdef __APPLE__
-#define KXRM_PLATFORM_APPLE
-#else
-
-//#ifdef _WIN32
-#define KXRM_PLATFORM_WINDOWS
-#endif
+#pragma once
 
 #define STB_IMAGE_IMPLEMENTATION
 
@@ -18,5 +9,3 @@
 #endif
 
 namespace KXRP {};
-
-#endif
